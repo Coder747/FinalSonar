@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">FinalSonar</string>
     <string name="hello_sonar">Hello Sonar</string>
+    <string name="freq">TextView</string>
+    <string name="stop">Stop</string>
 </resources>

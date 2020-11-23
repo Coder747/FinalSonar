@@ -19,7 +19,6 @@ public class GenerateSignal {
 
         float[] buffer = new float[(int) (length * sampleRate)];
 
-
         for (int sample = 0; sample < buffer.length; sample++) {
             double time = sample / sampleRate;
             double angle = freq * 2.0 * Math.PI * time;
