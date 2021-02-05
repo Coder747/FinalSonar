@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">FinalSonar</string>
     <string name="hello_sonar">Hello Sonar</string>
-    <string name="freq">TextView</string>
     <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="checkbox">Enable specific recording length</string>
+    <string name="number_of_seconds">Number of seconds</string>
+    <string name="seconds">Seconds</string>
 </resources>

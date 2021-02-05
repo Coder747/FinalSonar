@@ -197,7 +197,7 @@ public class AudioManager{
     public void saveWaveFiles(String waveFileName) throws IOException {
 
         saveWave(waveFileName + "_rec", tempFileRec);
-        saveWave(waveFileName + "_send", tempFileSend);
+        //saveWave(waveFileName + "_send", tempFileSend);
 
     }
 

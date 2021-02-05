@@ -1,6 +1,9 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'com.chaquo.python'
+
+
+
+
 
 android {
     compileSdkVersion 30
@@ -8,12 +11,30 @@ android {
 
     defaultConfig {
         applicationId "com.example.finalsonar"
-        minSdkVersion 29
+        minSdkVersion 30
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //chaquopy
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+        python {
+            buildPython "C:\\Users\\ayref\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+//            pip {
+//                install "librosa"
+//                install "IPython"
+//                install "numpy"
+//                install "matplotlib"
+//            }
+        }
+        sourceSets {
+            main {
+                python.srcDir "src/main/python"
+            }
+        }
     }
 
     buildTypes {
