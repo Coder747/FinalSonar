@@ -26,8 +26,9 @@ import java.nio.ByteOrder;
 
 public class AudioManager{
 
+    public int number_of_recording = 1;
     private Context ctx;
-    private static final String fileDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + File.separator + "FinalSonar" + File.separator;
+    private static String fileDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + File.separator + "FinalSonar" + File.separator;
 
     public int SAMPLE_RATE = 44100;
     private static final int minSize = 4*4096;
@@ -192,7 +193,8 @@ public class AudioManager{
 
     public void saveWaveFiles(String waveFileName) throws IOException {
 
-        saveWave(waveFileName + "_rec", tempFileRec);
+        saveWave(waveFileName + String.valueOf(number_of_recording) , tempFileRec);
+        number_of_recording++;  //increment number of recordings to stop overwriting
         //saveWave(waveFileName + "_send", tempFileSend);
 
     }
