@@ -39,7 +39,6 @@ public class AudioManager{
     private DataOutputStream dosSend;
     private DataOutputStream dosRec;
     private File tempFileRec;
-    private File tempFileSend;
 
     public AudioManager(Context ctx){
         this.ctx = ctx;
@@ -78,7 +77,7 @@ public class AudioManager{
                 .build();
 
         tempFileRec = new File(ctx.getExternalCacheDir().getAbsolutePath() + "/temp_rec.raw");
-        tempFileSend = new File(ctx.getExternalCacheDir().getAbsolutePath() + "/temp_send.raw");
+        File tempFileSend = new File(ctx.getExternalCacheDir().getAbsolutePath() + "/temp_send.raw");
 
         if(tempFileRec.exists())
             tempFileRec.delete();
@@ -130,18 +129,15 @@ public class AudioManager{
         });
 
 
-        Thread playThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread playThread = new Thread(() -> {
 
-                player.play();
-                while (isrecording) {
-                    player.write(audio, 0, audio.length);
-                    writeByteBufferToStream(audio, dosSend);
-                }
-                player.stop();
-                player.release();
+            player.play();
+            while (isrecording) {
+                player.write(audio, 0, audio.length);
+                writeByteBufferToStream(audio, dosSend);
             }
+            player.stop();
+            player.release();
         });
 
         recorder.startRecording();
@@ -246,11 +242,9 @@ public class AudioManager{
 
             MediaScannerConnection.scanFile(ctx,
                     new String[]{file.toString()}, null,
-                    new MediaScannerConnection.OnScanCompletedListener() {
-                        public void onScanCompleted(String path, Uri uri) {
-                            Log.i("ExternalStorage", "Scanned " + path + ":");
-                            Log.i("ExternalStorage", "-> uri=" + uri);
-                        }
+                    (path, uri) -> {
+                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                        Log.i("ExternalStorage", "-> uri=" + uri);
                     });
 
         }
