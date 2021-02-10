@@ -28,8 +28,8 @@ import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
-    ValueAnimator animator;
-    ProgressBar progressBar;
+    private ValueAnimator animator;
+    private ProgressBar progressBar;
     private Button B_StopButton, B_StartButton;
     private CheckBox CB_Specific_time;
     private EditText ET_seconds_input;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     B_StopButton.setBackgroundColor(getColor(R.color.dark_purple));
                     String duration = ET_seconds_input.getEditableText().toString();
                     recording_duration = Integer.parseInt(duration) * 1000;
+                    animator.setDuration(recording_duration*2);                     //set duration of progress bar
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         x.stopRecord();
                         try {
@@ -102,13 +103,7 @@ public class MainActivity extends AppCompatActivity {
         //Setup Progress Bar
         progressBar = findViewById(R.id.progressBar);
         animator = ValueAnimator.ofInt(0, progressBar.getMax());
-        animator.setDuration(recording_duration);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                progressBar.setProgress(Integer.parseInt(animation.getAnimatedValue().toString()));
-            }
-        });
+        animator.addUpdateListener(animation -> progressBar.setProgress(Integer.parseInt(animation.getAnimatedValue().toString())));
 
 
         //When we press button the recording stops and saves the file

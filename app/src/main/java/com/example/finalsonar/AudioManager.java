@@ -26,7 +26,7 @@ import java.nio.ByteOrder;
 
 public class AudioManager{
 
-    public int number_of_recording = 1;
+    private int number_of_recording = 1;
     private Context ctx;
     private static String fileDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + File.separator + "FinalSonar" + File.separator;
 
