@@ -32,7 +32,7 @@ public class AudioManager{
 
     public int SAMPLE_RATE = 44100;
     private static final int minSize = 4*4096;
-    public double freq = 19000;
+    public double freq = 20000;
     public double sampleRate = 44100;
     private final GenerateSignal Gensignal;
     public static boolean isrecording = true;
